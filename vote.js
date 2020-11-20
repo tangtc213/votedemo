@@ -211,7 +211,7 @@ app.post('/delete-vote', async(req, res, next) => {
     console.log(req.body)
     await db.run('DELETE FROM votes WHERE rowid = ?',req.body.voteId)
     await db.run('DELETE FROM options WHERE voteId = ?',req.body.voteId)
-    var myVotes = await db.all('SELECT rowid AS id, * FROM votes WHERE userId = ?', req.user.id)
+    var myVotes = await db.all('SELECT rowid AS id, * FROM votes')
     res.json(myVotes)
 })
 
